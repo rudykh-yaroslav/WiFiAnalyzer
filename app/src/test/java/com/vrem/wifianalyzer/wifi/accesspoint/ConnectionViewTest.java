@@ -24,6 +24,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import com.vrem.wifianalyzer.MainActivity;
 import com.vrem.wifianalyzer.MainContextHelper;
 import com.vrem.wifianalyzer.R;
@@ -47,9 +50,6 @@ import org.robolectric.annotation.LooperMode;
 
 import java.util.Collections;
 
-import androidx.annotation.NonNull;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -64,6 +64,7 @@ public class ConnectionViewTest {
     private static final String SSID = "SSID";
     private static final String BSSID = "BSSID";
     private static final String IP_ADDRESS = "IPADDRESS";
+    private static final long timestamp = System.currentTimeMillis();
 
     private MainActivity mainActivity;
     private ConnectionView fixture;
@@ -266,7 +267,7 @@ public class ConnectionViewTest {
     private WiFiDetail withConnection(@NonNull WiFiAdditional wiFiAdditional) {
         return new WiFiDetail(SSID, BSSID, StringUtils.EMPTY,
             new WiFiSignal(2435, 2435, WiFiWidth.MHZ_20, -55, true),
-            wiFiAdditional);
+                wiFiAdditional, timestamp);
     }
 
     private WiFiAdditional withWiFiAdditional() {

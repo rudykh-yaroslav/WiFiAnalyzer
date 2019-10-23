@@ -18,6 +18,8 @@
 
 package com.vrem.wifianalyzer.wifi.predicate;
 
+import androidx.annotation.NonNull;
+
 import com.vrem.wifianalyzer.wifi.band.WiFiWidth;
 import com.vrem.wifianalyzer.wifi.model.Strength;
 import com.vrem.wifianalyzer.wifi.model.WiFiAdditional;
@@ -26,12 +28,12 @@ import com.vrem.wifianalyzer.wifi.model.WiFiSignal;
 
 import org.junit.Test;
 
-import androidx.annotation.NonNull;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class StrengthPredicateTest {
+
+    private static final long timestamp = System.currentTimeMillis();
 
     @Test
     public void testStrengthPredicate() {
@@ -45,7 +47,7 @@ public class StrengthPredicateTest {
     @NonNull
     private WiFiDetail makeWiFiDetail(int level) {
         WiFiSignal wiFiSignal = new WiFiSignal(2445, 2445, WiFiWidth.MHZ_20, level, true);
-        return new WiFiDetail("ssid", "bssid", "wpa", wiFiSignal, WiFiAdditional.EMPTY);
+        return new WiFiDetail("ssid", "bssid", "wpa", wiFiSignal, WiFiAdditional.EMPTY, timestamp);
     }
 
 }

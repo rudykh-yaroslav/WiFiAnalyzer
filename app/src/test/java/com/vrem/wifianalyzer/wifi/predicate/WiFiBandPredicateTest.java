@@ -18,6 +18,8 @@
 
 package com.vrem.wifianalyzer.wifi.predicate;
 
+import androidx.annotation.NonNull;
+
 import com.vrem.wifianalyzer.wifi.band.WiFiBand;
 import com.vrem.wifianalyzer.wifi.band.WiFiWidth;
 import com.vrem.wifianalyzer.wifi.model.WiFiAdditional;
@@ -26,12 +28,12 @@ import com.vrem.wifianalyzer.wifi.model.WiFiSignal;
 
 import org.junit.Test;
 
-import androidx.annotation.NonNull;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class WiFiBandPredicateTest {
+
+    private static final long timestamp = System.currentTimeMillis();
 
     @Test
     public void testWiFiBandPredicateWith2GHzFrequency() {
@@ -54,7 +56,7 @@ public class WiFiBandPredicateTest {
     @NonNull
     private WiFiDetail makeWiFiDetail(int frequency) {
         WiFiSignal wiFiSignal = new WiFiSignal(frequency, frequency, WiFiWidth.MHZ_20, 1, true);
-        return new WiFiDetail("ssid", "bssid", "wpa", wiFiSignal, WiFiAdditional.EMPTY);
+        return new WiFiDetail("ssid", "bssid", "wpa", wiFiSignal, WiFiAdditional.EMPTY, timestamp);
     }
 
 }

@@ -53,6 +53,8 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AccessPointsAdapterDataTest {
+    private static final long timestamp = System.currentTimeMillis();
+
     @Mock
     private WiFiData wiFiData;
     @Mock
@@ -134,17 +136,17 @@ public class AccessPointsAdapterDataTest {
 
     private WiFiDetail withWiFiDetail() {
         WiFiDetail wiFiDetail = new WiFiDetail("SSID1", "BSSID1", StringUtils.EMPTY,
-            new WiFiSignal(2255, 2255, WiFiWidth.MHZ_20, -40, true));
-        wiFiDetail.addChild(new WiFiDetail("SSID1-1", "BSSID1-1", StringUtils.EMPTY, WiFiSignal.EMPTY));
-        wiFiDetail.addChild(new WiFiDetail("SSID1-2", "BSSID1-2", StringUtils.EMPTY, WiFiSignal.EMPTY));
-        wiFiDetail.addChild(new WiFiDetail("SSID1-3", "BSSID1-3", StringUtils.EMPTY, WiFiSignal.EMPTY));
+                new WiFiSignal(2255, 2255, WiFiWidth.MHZ_20, -40, true), timestamp);
+        wiFiDetail.addChild(new WiFiDetail("SSID1-1", "BSSID1-1", StringUtils.EMPTY, WiFiSignal.EMPTY, timestamp));
+        wiFiDetail.addChild(new WiFiDetail("SSID1-2", "BSSID1-2", StringUtils.EMPTY, WiFiSignal.EMPTY, timestamp));
+        wiFiDetail.addChild(new WiFiDetail("SSID1-3", "BSSID1-3", StringUtils.EMPTY, WiFiSignal.EMPTY, timestamp));
         return wiFiDetail;
     }
 
     private List<WiFiDetail> withWiFiDetails() {
         return Arrays.asList(withWiFiDetail(),
-            new WiFiDetail("SSID2", "BSSID2", StringUtils.EMPTY, WiFiSignal.EMPTY),
-            new WiFiDetail("SSID3", "BSSID3", StringUtils.EMPTY, WiFiSignal.EMPTY));
+                new WiFiDetail("SSID2", "BSSID2", StringUtils.EMPTY, WiFiSignal.EMPTY, timestamp),
+                new WiFiDetail("SSID3", "BSSID3", StringUtils.EMPTY, WiFiSignal.EMPTY, timestamp));
     }
 
     private void verifySettings() {

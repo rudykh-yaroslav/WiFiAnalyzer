@@ -28,7 +28,7 @@ import static org.junit.Assert.assertTrue;
 public class OptionActionTest {
     @Test
     public void testOptionAction() {
-        assertEquals(4, OptionAction.values().length);
+        assertEquals(5, OptionAction.values().length);
     }
 
     @Test

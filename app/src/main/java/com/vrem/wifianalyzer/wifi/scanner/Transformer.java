@@ -21,6 +21,8 @@ package com.vrem.wifianalyzer.wifi.scanner;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 
+import androidx.annotation.NonNull;
+
 import com.vrem.util.BuildUtils;
 import com.vrem.util.EnumUtils;
 import com.vrem.wifianalyzer.wifi.band.WiFiWidth;
@@ -35,8 +37,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 class Transformer {
 
@@ -113,7 +113,7 @@ class Transformer {
             WiFiWidth wiFiWidth = getWiFiWidth(scanResult);
             int centerFrequency = getCenterFrequency(scanResult, wiFiWidth);
             WiFiSignal wiFiSignal = new WiFiSignal(scanResult.frequency, centerFrequency, wiFiWidth, input.getLevelAverage(), is80211mc(scanResult));
-            return new WiFiDetail(scanResult.SSID, scanResult.BSSID, scanResult.capabilities, wiFiSignal);
+            return new WiFiDetail(scanResult.SSID, scanResult.BSSID, scanResult.capabilities, wiFiSignal, scanResult.timestamp);
         }
     }
 

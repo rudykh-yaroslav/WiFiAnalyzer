@@ -22,6 +22,9 @@ import android.app.Dialog;
 import android.os.Build;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import com.vrem.wifianalyzer.MainActivity;
 import com.vrem.wifianalyzer.R;
 import com.vrem.wifianalyzer.RobolectricUtil;
@@ -36,9 +39,6 @@ import org.junit.runner.RunWith;
 import org.robolectric.annotation.Config;
 import org.robolectric.annotation.LooperMode;
 
-import androidx.annotation.NonNull;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -48,6 +48,8 @@ import static org.robolectric.annotation.LooperMode.Mode.PAUSED;
 @Config(sdk = Build.VERSION_CODES.P)
 @LooperMode(PAUSED)
 public class AccessPointPopupTest {
+    private static final long timestamp = System.currentTimeMillis();
+
     private MainActivity mainActivity;
     private AccessPointPopup fixture;
 
@@ -95,7 +97,7 @@ public class AccessPointPopupTest {
     private WiFiDetail withWiFiDetail() {
         return new WiFiDetail("SSID", "BSSID", "capabilities",
             new WiFiSignal(1, 1, WiFiWidth.MHZ_40, 2, true),
-            WiFiAdditional.EMPTY);
+                WiFiAdditional.EMPTY, timestamp);
     }
 
 }

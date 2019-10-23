@@ -32,7 +32,7 @@ public class NavigationMenuTest {
 
     @Test
     public void testNavigationMenu() {
-        assertEquals(10, NavigationMenu.values().length);
+        assertEquals(11, NavigationMenu.values().length);
     }
 
     @Test

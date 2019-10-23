@@ -18,6 +18,8 @@
 
 package com.vrem.wifianalyzer.wifi.predicate;
 
+import androidx.annotation.NonNull;
+
 import com.vrem.wifianalyzer.wifi.band.WiFiWidth;
 import com.vrem.wifianalyzer.wifi.model.Security;
 import com.vrem.wifianalyzer.wifi.model.WiFiAdditional;
@@ -26,12 +28,12 @@ import com.vrem.wifianalyzer.wifi.model.WiFiSignal;
 
 import org.junit.Test;
 
-import androidx.annotation.NonNull;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class SecurityPredicateTest {
+
+    private static final long timestamp = System.currentTimeMillis();
 
     @Test
     public void testSecurityPredicateWithFoundValue() {
@@ -59,7 +61,7 @@ public class SecurityPredicateTest {
     @NonNull
     private WiFiDetail makeWiFiDetail(String security) {
         WiFiSignal wiFiSignal = new WiFiSignal(2455, 2455, WiFiWidth.MHZ_20, 1, true);
-        return new WiFiDetail("ssid", "bssid", security, wiFiSignal, WiFiAdditional.EMPTY);
+        return new WiFiDetail("ssid", "bssid", security, wiFiSignal, WiFiAdditional.EMPTY, timestamp);
     }
 
 }

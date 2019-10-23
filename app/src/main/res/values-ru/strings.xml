@@ -31,6 +31,7 @@
     <string name="action_channel_rating">"Оценка каналов"</string>
     <string name="action_channel_graph">"График каналов"</string>
     <string name="action_time_graph">"Временной график"</string>
+    <string name="action_upload_report">"Отправить отчёт"</string>
     <string name="action_export">"Экспорт"</string>
     <string name="action_channel_available">"Доступные каналы"</string>
     <string name="action_vendors">"Поставщики"</string>
@@ -121,5 +122,9 @@
     <string name="filter_strength_title">"Уровень сигнала"</string>
     <string name="filter_security_title">"Безопасность"</string>
     <!-- filter end -->
+
+    <!-- file upload start -->
+    <string name="file_upload_title">"Отправить отчëт"</string>
+    <!-- file upload end -->
 
 </resources>

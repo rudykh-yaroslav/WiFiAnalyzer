@@ -20,6 +20,8 @@ package com.vrem.wifianalyzer.navigation;
 
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+
 import com.vrem.wifianalyzer.MainActivity;
 import com.vrem.wifianalyzer.R;
 import com.vrem.wifianalyzer.navigation.availability.NavigationOption;
@@ -32,13 +34,12 @@ import org.apache.commons.collections4.IterableUtils;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-
 public enum NavigationMenu {
     ACCESS_POINTS(R.drawable.ic_network_wifi, R.string.action_access_points, NavigationItemFactory.ACCESS_POINTS, NavigationOptionFactory.AP),
     CHANNEL_RATING(R.drawable.ic_wifi_tethering, R.string.action_channel_rating, NavigationItemFactory.CHANNEL_RATING, NavigationOptionFactory.RATING),
     CHANNEL_GRAPH(R.drawable.ic_insert_chart, R.string.action_channel_graph, NavigationItemFactory.CHANNEL_GRAPH, NavigationOptionFactory.OTHER),
     TIME_GRAPH(R.drawable.ic_show_chart, R.string.action_time_graph, NavigationItemFactory.TIME_GRAPH, NavigationOptionFactory.OTHER),
+    UPLOAD_REPORT(R.drawable.ic_file_upload, R.string.action_upload_report, NavigationItemFactory.UPLOAD_REPORT),
     EXPORT(R.drawable.ic_import_export, R.string.action_export, NavigationItemFactory.EXPORT),
     CHANNEL_AVAILABLE(R.drawable.ic_location_on, R.string.action_channel_available, NavigationItemFactory.CHANNEL_AVAILABLE),
     VENDORS(R.drawable.ic_list_grey, R.string.action_vendors, NavigationItemFactory.VENDORS),

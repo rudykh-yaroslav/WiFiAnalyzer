@@ -18,6 +18,8 @@
 
 package com.vrem.wifianalyzer.wifi.model;
 
+import androidx.annotation.NonNull;
+
 import com.vrem.wifianalyzer.wifi.band.WiFiBand;
 import com.vrem.wifianalyzer.wifi.band.WiFiChannel;
 import com.vrem.wifianalyzer.wifi.band.WiFiWidth;
@@ -30,11 +32,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-
 import static org.junit.Assert.assertEquals;
 
 public class ChannelRatingTest {
+    private static final long timestamp = System.currentTimeMillis();
+
     private WiFiDetail wiFiDetail1;
     private WiFiDetail wiFiDetail2;
     private WiFiDetail wiFiDetail3;
@@ -46,16 +48,16 @@ public class ChannelRatingTest {
         WiFiConnection wiFiConnection = new WiFiConnection("SSID1", "20:cf:30:ce:1d:71", "192.168.1.15", 11);
         wiFiDetail1 = new WiFiDetail("SSID1", "20:cf:30:ce:1d:71", StringUtils.EMPTY,
             new WiFiSignal(2432, 2432, WiFiWidth.MHZ_20, -50, true),
-            new WiFiAdditional(StringUtils.EMPTY, wiFiConnection));
+                new WiFiAdditional(StringUtils.EMPTY, wiFiConnection), timestamp);
         wiFiDetail2 = new WiFiDetail("SSID2", "58:6d:8f:fa:ae:c0", StringUtils.EMPTY,
             new WiFiSignal(2442, 2442, WiFiWidth.MHZ_20, -70, true),
-            WiFiAdditional.EMPTY);
+                WiFiAdditional.EMPTY, timestamp);
         wiFiDetail3 = new WiFiDetail("SSID3", "84:94:8c:9d:40:68", StringUtils.EMPTY,
             new WiFiSignal(2452, 2452, WiFiWidth.MHZ_20, -60, true),
-            WiFiAdditional.EMPTY);
+                WiFiAdditional.EMPTY, timestamp);
         wiFiDetail4 = new WiFiDetail("SSID3", "64:A4:8c:90:10:12", StringUtils.EMPTY,
             new WiFiSignal(2452, 2452, WiFiWidth.MHZ_20, -80, true),
-            WiFiAdditional.EMPTY);
+                WiFiAdditional.EMPTY, timestamp);
         fixture = new ChannelRating();
     }
 
@@ -110,7 +112,7 @@ public class ChannelRatingTest {
         WiFiSignal wiFiSignal = wiFiDetail.getWiFiSignal();
         return new WiFiDetail("SSID2-OTHER", "BSSID-OTHER", StringUtils.EMPTY,
             new WiFiSignal(wiFiSignal.getPrimaryFrequency(), wiFiSignal.getCenterFrequency(), wiFiSignal.getWiFiWidth(), -80, true),
-            WiFiAdditional.EMPTY);
+                WiFiAdditional.EMPTY, timestamp);
     }
 
     @Test
@@ -141,7 +143,7 @@ public class ChannelRatingTest {
         // setup
         WiFiDetail wiFiDetailGuest = new WiFiDetail("SSID2", "22:cf:30:ce:1d:72", StringUtils.EMPTY,
             new WiFiSignal(2432, 2432, WiFiWidth.MHZ_20, -50 + ChannelRating.LEVEL_RANGE_MIN, true),
-            WiFiAdditional.EMPTY);
+                WiFiAdditional.EMPTY, timestamp);
         // execute
         fixture.setWiFiDetails(Collections.unmodifiableList(Arrays.asList(wiFiDetail1, wiFiDetailGuest)));
         // validate

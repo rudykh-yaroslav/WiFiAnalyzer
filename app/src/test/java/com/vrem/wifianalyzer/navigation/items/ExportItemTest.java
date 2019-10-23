@@ -25,6 +25,8 @@ import android.content.res.Resources;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import com.vrem.wifianalyzer.MainActivity;
 import com.vrem.wifianalyzer.MainContextHelper;
 import com.vrem.wifianalyzer.R;
@@ -45,8 +47,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Collections;
 
-import androidx.annotation.NonNull;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.verify;
@@ -55,6 +55,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class ExportItemTest {
     private static final String TITLE = "title";
+    private static final long timestamp = System.currentTimeMillis();
 
     @Mock
     private Intent sendIntent;
@@ -80,7 +81,7 @@ public class ExportItemTest {
         scanner = MainContextHelper.INSTANCE.getScannerService();
 
         wiFiDetail = new WiFiDetail("SSID", "BSSID", "capabilities",
-            new WiFiSignal(2412, 2422, WiFiWidth.MHZ_40, -40, true));
+                new WiFiSignal(2412, 2422, WiFiWidth.MHZ_40, -40, true), timestamp);
 
         fixture = new ExportItem() {
             @Override

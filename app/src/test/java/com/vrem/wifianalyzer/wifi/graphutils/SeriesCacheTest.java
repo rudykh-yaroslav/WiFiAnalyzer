@@ -46,6 +46,8 @@ import static org.junit.Assert.assertTrue;
 @SuppressWarnings("AnonymousInnerClass")
 @RunWith(MockitoJUnitRunner.class)
 public class SeriesCacheTest {
+    private static final long timestamp = System.currentTimeMillis();
+
     @Mock
     private BaseSeries<DataPoint> series1;
     @Mock
@@ -207,7 +209,7 @@ public class SeriesCacheTest {
 
     private WiFiDetail makeWiFiDetail(String SSID) {
         return new WiFiDetail(SSID, "BSSID", StringUtils.EMPTY,
-            new WiFiSignal(100, 100, WiFiWidth.MHZ_20, 5, true));
+                new WiFiSignal(100, 100, WiFiWidth.MHZ_20, 5, true), timestamp);
     }
 
     private List<WiFiDetail> withData() {

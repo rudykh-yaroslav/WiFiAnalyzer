@@ -33,12 +33,13 @@ import static org.junit.Assert.assertEquals;
 
 public class ExportTest {
     private static final String TIME_STAMP = "time-stamp";
+    private static final long timestamp = System.currentTimeMillis();
     private Export fixture;
 
     @Before
     public void setUp() {
         List<WiFiDetail> wiFiDetails = Lists.newArrayList(new WiFiDetail("SSID", "BSSID", "capabilities",
-            new WiFiSignal(2412, 2422, WiFiWidth.MHZ_40, -40, true)));
+                new WiFiSignal(2412, 2422, WiFiWidth.MHZ_40, -40, true), timestamp));
         fixture = new Export(wiFiDetails, TIME_STAMP);
     }
 

@@ -34,6 +34,7 @@ public class NavigationItemFactory {
     public static final NavigationItem CHANNEL_RATING = new FragmentItem(new ChannelRatingFragment());
     public static final NavigationItem CHANNEL_GRAPH = new FragmentItem(new ChannelGraphFragment());
     public static final NavigationItem TIME_GRAPH = new FragmentItem(new TimeGraphFragment());
+    public static final NavigationItem UPLOAD_REPORT = new UploadReportItem();
     public static final NavigationItem EXPORT = new ExportItem();
     public static final NavigationItem CHANNEL_AVAILABLE = new FragmentItem(new ChannelAvailableFragment(), false);
     public static final NavigationItem VENDORS = new FragmentItem(new VendorFragment(), false, View.GONE);

@@ -20,6 +20,9 @@ package com.vrem.wifianalyzer.wifi.timegraph;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.vrem.wifianalyzer.RobolectricUtil;
@@ -48,9 +51,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import androidx.annotation.NonNull;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.argThat;
@@ -67,6 +67,8 @@ import static org.robolectric.annotation.LooperMode.Mode.PAUSED;
 public class DataManagerTest {
     private static final String BSSID = "BSSID";
     private static final int LEVEL = -40;
+    private static final long timestamp = System.currentTimeMillis();
+
     private GraphViewWrapper graphViewWrapper;
     private TimeGraphCache timeGraphCache;
     private DataManager fixture;
@@ -220,7 +222,7 @@ public class DataManagerTest {
     private WiFiDetail makeWiFiDetailConnected(@NonNull String SSID) {
         WiFiConnection wiFiConnection = new WiFiConnection(SSID, BSSID, "IPADDRESS", 11);
         WiFiAdditional wiFiAdditional = new WiFiAdditional("VendorName", wiFiConnection);
-        return new WiFiDetail(SSID, BSSID, StringUtils.EMPTY, makeWiFiSignal(), wiFiAdditional);
+        return new WiFiDetail(SSID, BSSID, StringUtils.EMPTY, makeWiFiSignal(), wiFiAdditional, timestamp);
     }
 
     private WiFiSignal makeWiFiSignal() {
@@ -228,7 +230,7 @@ public class DataManagerTest {
     }
 
     private WiFiDetail makeWiFiDetail(@NonNull String SSID) {
-        return new WiFiDetail(SSID, BSSID, StringUtils.EMPTY, makeWiFiSignal(), WiFiAdditional.EMPTY);
+        return new WiFiDetail(SSID, BSSID, StringUtils.EMPTY, makeWiFiSignal(), WiFiAdditional.EMPTY, timestamp);
     }
 
     private List<WiFiDetail> makeWiFiDetails() {

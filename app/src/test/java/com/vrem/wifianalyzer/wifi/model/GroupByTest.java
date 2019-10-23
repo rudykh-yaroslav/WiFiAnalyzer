@@ -28,6 +28,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class GroupByTest {
+    private static final long timestamp = System.currentTimeMillis();
+
     private WiFiDetail wiFiDetail1;
     private WiFiDetail wiFiDetail2;
 
@@ -35,10 +37,10 @@ public class GroupByTest {
     public void setUp() {
         wiFiDetail1 = new WiFiDetail("SSID1", "BSSID1", StringUtils.EMPTY,
             new WiFiSignal(2462, 2462, WiFiWidth.MHZ_20, -35, true),
-            WiFiAdditional.EMPTY);
+                WiFiAdditional.EMPTY, timestamp);
         wiFiDetail2 = new WiFiDetail("SSID2", "BSSID2", StringUtils.EMPTY,
             new WiFiSignal(2432, 2432, WiFiWidth.MHZ_20, -55, true),
-            WiFiAdditional.EMPTY);
+                WiFiAdditional.EMPTY, timestamp);
     }
 
 

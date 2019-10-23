@@ -36,6 +36,7 @@ public class WiFiDetailTest {
     private static final String WPA = "WPA";
     private static final String SSID = "xyzSSID";
     private static final String BSSID = "xyzBSSID";
+    private static final long timestamp = System.currentTimeMillis();
 
     private WiFiSignal wiFiSignal;
     private WiFiAdditional wiFiAdditional;
@@ -45,7 +46,7 @@ public class WiFiDetailTest {
     public void setUp() {
         wiFiAdditional = new WiFiAdditional(VENDOR_NAME);
         wiFiSignal = new WiFiSignal(FREQUENCY, FREQUENCY, WiFiWidth.MHZ_20, LEVEL, true);
-        fixture = new WiFiDetail(SSID, BSSID, WPA, wiFiSignal, wiFiAdditional);
+        fixture = new WiFiDetail(SSID, BSSID, WPA, wiFiSignal, wiFiAdditional, timestamp);
     }
 
     @Test
@@ -67,7 +68,7 @@ public class WiFiDetailTest {
     public void testGetTitleWithEmptySSID() {
         // setup
         String expectedTitle = "*** (" + BSSID + ")";
-        fixture = new WiFiDetail(StringUtils.EMPTY, BSSID, WPA, wiFiSignal);
+        fixture = new WiFiDetail(StringUtils.EMPTY, BSSID, WPA, wiFiSignal, timestamp);
         // validate
         assertEquals(expectedTitle, fixture.getTitle());
     }
@@ -75,7 +76,7 @@ public class WiFiDetailTest {
     @Test
     public void testEquals() {
         // setup
-        WiFiDetail other = new WiFiDetail(SSID, BSSID, WPA, wiFiSignal);
+        WiFiDetail other = new WiFiDetail(SSID, BSSID, WPA, wiFiSignal, timestamp);
         // execute & validate
         assertEquals(fixture, other);
         assertNotSame(fixture, other);
@@ -84,7 +85,7 @@ public class WiFiDetailTest {
     @Test
     public void testHashCode() {
         // setup
-        WiFiDetail other = new WiFiDetail(SSID, BSSID, WPA, wiFiSignal);
+        WiFiDetail other = new WiFiDetail(SSID, BSSID, WPA, wiFiSignal, timestamp);
         // execute & validate
         assertEquals(fixture.hashCode(), other.hashCode());
     }
@@ -92,7 +93,7 @@ public class WiFiDetailTest {
     @Test
     public void testCompareTo() {
         // setup
-        WiFiDetail other = new WiFiDetail(SSID, BSSID, WPA, wiFiSignal);
+        WiFiDetail other = new WiFiDetail(SSID, BSSID, WPA, wiFiSignal, timestamp);
         // execute & validate
         assertEquals(0, fixture.compareTo(other));
     }
@@ -100,7 +101,7 @@ public class WiFiDetailTest {
     @Test
     public void testIsHidden() {
         // setup
-        fixture = new WiFiDetail(StringUtils.EMPTY, BSSID, WPA, wiFiSignal);
+        fixture = new WiFiDetail(StringUtils.EMPTY, BSSID, WPA, wiFiSignal, timestamp);
         // execute & validate
         assertTrue(fixture.isHidden());
     }
@@ -108,7 +109,7 @@ public class WiFiDetailTest {
     @Test
     public void testWiFiDetailCopyConstructor() {
         // setup
-        WiFiDetail expected = new WiFiDetail(StringUtils.EMPTY, BSSID, WPA, wiFiSignal);
+        WiFiDetail expected = new WiFiDetail(StringUtils.EMPTY, BSSID, WPA, wiFiSignal, timestamp);
         // execute
         WiFiDetail actual = new WiFiDetail(expected, expected.getWiFiAdditional());
         // validate
@@ -121,6 +122,7 @@ public class WiFiDetailTest {
         assertEquals(expected.isHidden(), actual.isHidden());
         assertEquals(expected.getWiFiAdditional(), actual.getWiFiAdditional());
         assertEquals(expected.getWiFiSignal(), actual.getWiFiSignal());
+        assertEquals(expected.getTimestamp(), actual.getTimestamp());
     }
 
 }

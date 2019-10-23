@@ -31,11 +31,12 @@ import static org.junit.Assert.assertTrue;
 public class SSIDPredicateTest {
 
     private static final String SSID = "ssid";
+    private static final long timestamp = System.currentTimeMillis();
 
     @Test
     public void testSSIDPredicate() {
         // setup
-        WiFiDetail wiFiDetail = new WiFiDetail(SSID, "bssid", "wpa", WiFiSignal.EMPTY, WiFiAdditional.EMPTY);
+        WiFiDetail wiFiDetail = new WiFiDetail(SSID, "bssid", "wpa", WiFiSignal.EMPTY, WiFiAdditional.EMPTY, timestamp);
         // execute & validate
         assertTrue(new SSIDPredicate(SSID).evaluate(wiFiDetail));
         assertTrue(new SSIDPredicate("id").evaluate(wiFiDetail));

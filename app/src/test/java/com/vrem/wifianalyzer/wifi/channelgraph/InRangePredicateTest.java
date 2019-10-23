@@ -18,6 +18,8 @@
 
 package com.vrem.wifianalyzer.wifi.channelgraph;
 
+import androidx.core.util.Pair;
+
 import com.vrem.wifianalyzer.wifi.band.WiFiBand;
 import com.vrem.wifianalyzer.wifi.band.WiFiChannel;
 import com.vrem.wifianalyzer.wifi.band.WiFiWidth;
@@ -28,8 +30,6 @@ import com.vrem.wifianalyzer.wifi.model.WiFiSignal;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
-
-import androidx.core.util.Pair;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -61,7 +61,7 @@ public class InRangePredicateTest {
 
     private WiFiDetail makeWiFiDetail(int frequency) {
         WiFiSignal wiFiSignal = new WiFiSignal(frequency + 20, frequency, WiFiWidth.MHZ_20, -10, true);
-        return new WiFiDetail("SSID", "BSSID", StringUtils.EMPTY, wiFiSignal, WiFiAdditional.EMPTY);
+        return new WiFiDetail("SSID", "BSSID", StringUtils.EMPTY, wiFiSignal, WiFiAdditional.EMPTY, System.currentTimeMillis());
     }
 
 }

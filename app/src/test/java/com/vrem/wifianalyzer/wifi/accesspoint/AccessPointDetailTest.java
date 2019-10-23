@@ -22,6 +22,9 @@ import android.os.Build;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import com.vrem.wifianalyzer.MainActivity;
 import com.vrem.wifianalyzer.MainContextHelper;
 import com.vrem.wifianalyzer.R;
@@ -42,9 +45,6 @@ import org.robolectric.annotation.LooperMode;
 
 import java.util.Locale;
 
-import androidx.annotation.NonNull;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -59,6 +59,7 @@ import static org.robolectric.annotation.LooperMode.Mode.PAUSED;
 public class AccessPointDetailTest {
     private static final String SSID = "SSID";
     private static final String VENDOR_NAME = "VendorName-VendorName-VendorName-VendorName-VendorName-VendorName";
+    private static final long timestamp = System.currentTimeMillis();
 
     private MainActivity mainActivity;
     private Settings settings;
@@ -352,13 +353,13 @@ public class AccessPointDetailTest {
     private WiFiDetail withWiFiDetail(String SSID, WiFiAdditional wiFiAdditional) {
         return new WiFiDetail(SSID, "BSSID", "capabilities",
             new WiFiSignal(1, 1, WiFiWidth.MHZ_40, 2, false),
-            wiFiAdditional);
+                wiFiAdditional, timestamp);
     }
 
     private WiFiDetail withWiFiDetail(String SSID, WiFiAdditional wiFiAdditional, boolean is80211mc) {
         return new WiFiDetail(SSID, "BSSID", "capabilities",
             new WiFiSignal(1, 1, WiFiWidth.MHZ_40, 2, is80211mc),
-            wiFiAdditional);
+                wiFiAdditional, timestamp);
     }
 
     private void validateTextViewValuesFullView(@NonNull View view, @NonNull WiFiDetail wiFiDetail) {

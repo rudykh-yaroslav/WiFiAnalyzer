@@ -20,6 +20,10 @@ package com.vrem.wifianalyzer.wifi.channelgraph;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.core.util.Pair;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.TitleLineGraphSeries;
 import com.vrem.wifianalyzer.RobolectricUtil;
@@ -45,10 +49,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
-import androidx.annotation.NonNull;
-import androidx.core.util.Pair;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -156,7 +156,7 @@ public class DataManagerTest {
 
     private WiFiDetail makeWiFiDetail(@NonNull String SSID, int frequency) {
         WiFiSignal wiFiSignal = new WiFiSignal(frequency, frequency, WiFiWidth.MHZ_20, LEVEL, true);
-        return new WiFiDetail(SSID, "BSSID", StringUtils.EMPTY, wiFiSignal, WiFiAdditional.EMPTY);
+        return new WiFiDetail(SSID, "BSSID", StringUtils.EMPTY, wiFiSignal, WiFiAdditional.EMPTY, System.currentTimeMillis());
     }
 
     private List<WiFiDetail> makeWiFiDetails(int frequency) {

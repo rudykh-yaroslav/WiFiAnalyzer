@@ -39,6 +39,8 @@ import static org.junit.Assert.assertTrue;
 
 public class TimeGraphCacheTest {
 
+    private static final long timestamp = System.currentTimeMillis();
+
     private TimeGraphCache fixture;
 
     @Before
@@ -93,7 +95,7 @@ public class TimeGraphCacheTest {
 
     private WiFiDetail withWiFiDetail(String SSID) {
         return new WiFiDetail(SSID, "BSSID", StringUtils.EMPTY,
-            new WiFiSignal(100, 100, WiFiWidth.MHZ_20, 5, true));
+                new WiFiSignal(100, 100, WiFiWidth.MHZ_20, 5, true), timestamp);
     }
 
     private List<WiFiDetail> withWiFiDetails() {

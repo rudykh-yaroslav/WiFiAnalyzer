@@ -18,16 +18,16 @@
 
 package com.vrem.wifianalyzer.navigation;
 
+import androidx.annotation.NonNull;
+
 import org.apache.commons.collections4.Predicate;
 
 import java.util.Arrays;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-
 public enum NavigationGroup {
     GROUP_FEATURE(NavigationMenu.ACCESS_POINTS, NavigationMenu.CHANNEL_RATING, NavigationMenu.CHANNEL_GRAPH, NavigationMenu.TIME_GRAPH),
-    GROUP_OTHER(NavigationMenu.EXPORT, NavigationMenu.CHANNEL_AVAILABLE, NavigationMenu.VENDORS, NavigationMenu.PORT_AUTHORITY),
+    GROUP_OTHER(NavigationMenu.UPLOAD_REPORT, NavigationMenu.EXPORT, NavigationMenu.CHANNEL_AVAILABLE, NavigationMenu.VENDORS, NavigationMenu.PORT_AUTHORITY),
     GROUP_SETTINGS(NavigationMenu.SETTINGS, NavigationMenu.ABOUT);
 
     private final List<NavigationMenu> navigationMenus;

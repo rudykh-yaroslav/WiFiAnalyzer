@@ -31,6 +31,7 @@
     <string name="action_channel_rating">"Qualità canali"</string>
     <string name="action_channel_graph">"Grafico Canali"</string>
     <string name="action_time_graph">"Grafico Temporale"</string>
+    <string name="action_upload_report">"Upload Report"</string>
     <string name="action_export">"Esporta"</string>
     <string name="action_channel_available">"Canali Disponibili"</string>
     <string name="action_vendors">"Fornitori"</string>
@@ -120,5 +121,9 @@
     <string name="filter_strength_title">"Potenza Segnale"</string>
     <string name="filter_security_title">"Sicurezza"</string>
     <!-- filter end -->
+
+    <!-- file upload start -->
+    <string name="file_upload_title">"Upload report"</string>
+    <!-- file upload end -->
 
 </resources>

@@ -18,18 +18,19 @@
 
 package com.vrem.wifianalyzer.navigation.options;
 
+import androidx.annotation.NonNull;
+
 import com.vrem.util.EnumUtils;
 import com.vrem.wifianalyzer.R;
 
 import org.apache.commons.collections4.Predicate;
 
-import androidx.annotation.NonNull;
-
 enum OptionAction {
     NO_ACTION(-1, new NoAction()),
     SCANNER(R.id.action_scanner, new ScannerAction()),
     FILTER(R.id.action_filter, new FilterAction()),
-    WIFI_BAND(R.id.action_wifi_band, new WiFiBandAction());
+    WIFI_BAND(R.id.action_wifi_band, new WiFiBandAction()),
+    UPLOAD_REPORT(R.id.action_report, new UploadReportAction());
 
     private final int key;
     private final Action action;

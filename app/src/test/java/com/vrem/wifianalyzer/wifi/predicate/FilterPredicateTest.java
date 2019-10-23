@@ -52,6 +52,7 @@ public class FilterPredicateTest {
 
     private static final String SSID = "SSID";
     private static final String WPA2 = "WPA2";
+    private static final long timestamp = System.currentTimeMillis();
 
     @Mock
     private Settings settings;
@@ -151,7 +152,7 @@ public class FilterPredicateTest {
 
     private WiFiDetail makeWiFiDetail(String ssid, String security) {
         WiFiSignal wiFiSignal = new WiFiSignal(2445, 2445, WiFiWidth.MHZ_20, -40, true);
-        return new WiFiDetail(ssid, "BSSID", security, wiFiSignal, WiFiAdditional.EMPTY);
+        return new WiFiDetail(ssid, "BSSID", security, wiFiSignal, WiFiAdditional.EMPTY, timestamp);
     }
 
 }

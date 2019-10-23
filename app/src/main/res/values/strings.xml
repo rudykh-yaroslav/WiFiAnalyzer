@@ -37,6 +37,7 @@
     <string name="action_channel_rating">"Channel Rating"</string>
     <string name="action_channel_graph">"Channel Graph"</string>
     <string name="action_time_graph">"Time Graph"</string>
+    <string name="action_upload_report">"Upload Report"</string>
     <string name="action_export">"Export"</string>
     <string name="action_channel_available">"Available Channels"</string>
     <string name="action_vendors">"Vendors"</string>
@@ -219,5 +220,9 @@
     <string name="filter_security_title">"Security"</string>
     <string name="filter_security_key" translatable="false">"filter_security"</string>
     <!-- filter end -->
+
+    <!-- file upload start -->
+    <string name="file_upload_title">"Upload report"</string>
+    <!-- file upload end -->
 
 </resources>
