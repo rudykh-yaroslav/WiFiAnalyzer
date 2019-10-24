@@ -29,6 +29,8 @@ public class Report {
         ProgressBar progressBar = MainContext.INSTANCE.getMainActivity().findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
+        wiFiData.setLogin(MainContext.INSTANCE.getAuthTokenProvider().getLogin());
+
         if (wiFiData.getLat() != 0 && wiFiData.getLon() != 0) {
             DadataNetworkService
                     .getInstance()
@@ -45,15 +47,19 @@ public class Report {
                                             wiFiData.setAddress(suggestions.get(0).getValue());
                                         }
                                     }
+                                    doSend();
                                 }
 
                                 @Override
                                 public void onFailure(Call<DadataRs> call, Throwable t) {
-                                    //ignore
+                                    doSend();
                                 }
                             }
                     );
         }
+    }
+
+    private void doSend() {
 
         WiFiAdminNetworkService
                 .getInstance()

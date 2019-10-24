@@ -129,6 +129,7 @@
 
     <string name="report_upload_success">"Отчёт успешно отправлен"</string>
     <string name="report_upload_failure">"Во время отправки отчёта произошла ошибка. Попробуйте повторить отправку позже."</string>
+    <string name="login_failure">"Не удалось авторизоваться"</string>
 
     <!-- login start -->
     <string name="login">"Логин"</string>

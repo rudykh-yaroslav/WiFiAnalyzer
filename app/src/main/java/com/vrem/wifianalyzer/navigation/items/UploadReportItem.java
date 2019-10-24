@@ -9,7 +9,6 @@ import com.vrem.wifianalyzer.MainActivity;
 import com.vrem.wifianalyzer.MainContext;
 import com.vrem.wifianalyzer.navigation.NavigationMenu;
 import com.vrem.wifianalyzer.report.Report;
-import com.vrem.wifianalyzer.wifi.scanner.ScannerService;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,8 +19,7 @@ class UploadReportItem implements NavigationItem {
         if (StringUtils.isBlank(authKey)) {
             MainContext.INSTANCE.getLoginDialogProvider().callLoginDialog();
         } else {
-            ScannerService scannerService = MainContext.INSTANCE.getScannerService();
-            Report report = new Report(scannerService.getWiFiData());
+            Report report = new Report(MainContext.INSTANCE.getScannerService().getWiFiData());
             report.send();
         }
     }

@@ -8,6 +8,6 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface DadataApi {
-    @POST("/api/4_1/rs/geolocate/address")
+    @POST("api/4_1/rs/geolocate/address")
     Call<DadataRs> reverseGeocode(@Body DadataRq dadataRq);
 }

@@ -43,6 +43,7 @@ public class WiFiData {
     private double lat;
     private double lon;
     private String address;
+    private String login;
 
     public WiFiData(@NonNull List<WiFiDetail> wiFiDetails, @NonNull WiFiConnection wiFiConnection) {
         this.wiFiDetails = wiFiDetails;
@@ -133,6 +134,15 @@ public class WiFiData {
 
     public void setAddress(@Nullable String address) {
         this.address = address;
+    }
+
+    @Nullable
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(@NonNull String login) {
+        this.login = login;
     }
 
     @NonNull

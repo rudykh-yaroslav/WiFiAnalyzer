@@ -3,11 +3,17 @@ package com.vrem.wifianalyzer.auth;
 import android.app.Dialog;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.vrem.wifianalyzer.MainContext;
 import com.vrem.wifianalyzer.R;
+import com.vrem.wifianalyzer.network.WiFiAdminNetworkService;
 import com.vrem.wifianalyzer.report.Report;
-import com.vrem.wifianalyzer.wifi.scanner.ScannerService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginDialogProvider {
 
@@ -22,11 +28,43 @@ public class LoginDialogProvider {
         loginDialog.show();
 
         loginBtn.setOnClickListener(v -> {
-            ScannerService scannerService = MainContext.INSTANCE.getScannerService();
-            Report report = new Report(scannerService.getWiFiData());
-            report.send();
+            WiFiAdminNetworkService
+                    .getInstance()
+                    .wiFiAdminApi()
+                    .login(new LoginData(login.getText().toString(), password.getText().toString()))
+                    .enqueue(
+                            new Callback<UserData>() {
 
-            loginDialog.hide();
+                                @Override
+                                public void onResponse(Call<UserData> call, Response<UserData> response) {
+                                    ProgressBar progressBar = MainContext.INSTANCE.getMainActivity().findViewById(R.id.progressBar);
+                                    progressBar.setVisibility(ProgressBar.INVISIBLE);
+
+                                    if (response.isSuccessful()) {
+                                        MainContext.INSTANCE.getAuthTokenProvider().setUserData(response.body());
+                                        Report report = new Report(MainContext.INSTANCE.getScannerService().getWiFiData());
+                                        report.send();
+                                    } else {
+                                        Toast toast = Toast.makeText(MainContext.INSTANCE.getContext(),
+                                                R.string.login_failure, Toast.LENGTH_LONG);
+                                        toast.show();
+                                    }
+
+                                    loginDialog.hide();
+                                }
+
+                                @Override
+                                public void onFailure(Call<UserData> call, Throwable t) {
+                                    ProgressBar progressBar = MainContext.INSTANCE.getMainActivity().findViewById(R.id.progressBar);
+                                    progressBar.setVisibility(ProgressBar.INVISIBLE);
+
+                                    Toast toast = Toast.makeText(MainContext.INSTANCE.getContext(),
+                                            R.string.login_failure, Toast.LENGTH_LONG);
+                                    toast.show();
+
+                                    loginDialog.hide();
+                                }
+                            });
         });
 
 

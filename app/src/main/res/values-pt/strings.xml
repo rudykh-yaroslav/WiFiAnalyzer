@@ -129,6 +129,7 @@
 
     <string name="report_upload_success">"Report has been uploaded"</string>
     <string name="report_upload_failure">"Error occurred. Try again later."</string>
+    <string name="login_failure">"Login failed"</string>
 
     <!-- login start -->
     <string name="login">"Login"</string>
