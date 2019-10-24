@@ -24,6 +24,10 @@ import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.view.LayoutInflater;
 
+import androidx.annotation.NonNull;
+
+import com.vrem.wifianalyzer.auth.AuthTokenProvider;
+import com.vrem.wifianalyzer.auth.LoginDialogProvider;
 import com.vrem.wifianalyzer.settings.Repository;
 import com.vrem.wifianalyzer.settings.Settings;
 import com.vrem.wifianalyzer.settings.SettingsFactory;
@@ -32,8 +36,6 @@ import com.vrem.wifianalyzer.vendor.model.VendorServiceFactory;
 import com.vrem.wifianalyzer.wifi.filter.adapter.FilterAdapter;
 import com.vrem.wifianalyzer.wifi.scanner.ScannerService;
 import com.vrem.wifianalyzer.wifi.scanner.ScannerServiceFactory;
-
-import androidx.annotation.NonNull;
 
 public enum MainContext {
     INSTANCE;
@@ -44,6 +46,8 @@ public enum MainContext {
     private VendorService vendorService;
     private Configuration configuration;
     private FilterAdapter filterAdapter;
+    private AuthTokenProvider authTokenProvider;
+    private LoginDialogProvider loginDialogProvider;
 
     public Settings getSettings() {
         return settings;
@@ -105,6 +109,22 @@ public enum MainContext {
         this.filterAdapter = filterAdapter;
     }
 
+    public AuthTokenProvider getAuthTokenProvider() {
+        return authTokenProvider;
+    }
+
+    public void setAuthTokenProvider(AuthTokenProvider authTokenProvider) {
+        this.authTokenProvider = authTokenProvider;
+    }
+
+    public LoginDialogProvider getLoginDialogProvider() {
+        return loginDialogProvider;
+    }
+
+    public void setLoginDialogProvider(LoginDialogProvider loginDialogProvider) {
+        this.loginDialogProvider = loginDialogProvider;
+    }
+
     void initialize(@NonNull MainActivity mainActivity, boolean largeScreen) {
         Context applicationContext = mainActivity.getApplicationContext();
         WifiManager wifiManager = (WifiManager) applicationContext.getSystemService(Context.WIFI_SERVICE);
@@ -119,6 +139,8 @@ public enum MainContext {
         setVendorService(VendorServiceFactory.makeVendorService(mainActivity.getResources()));
         setScannerService(ScannerServiceFactory.makeScannerService(wifiManager, handler, currentSettings));
         setFilterAdapter(new FilterAdapter(currentSettings));
+        setAuthTokenProvider(new AuthTokenProvider());
+        setLoginDialogProvider(new LoginDialogProvider());
     }
 
 }

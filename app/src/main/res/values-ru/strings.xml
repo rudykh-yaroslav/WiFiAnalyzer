@@ -127,4 +127,14 @@
     <string name="file_upload_title">"Отправить отчëт"</string>
     <!-- file upload end -->
 
+    <string name="report_upload_success">"Отчёт успешно отправлен"</string>
+    <string name="report_upload_failure">"Во время отправки отчёта произошла ошибка. Попробуйте повторить отправку позже."</string>
+
+    <!-- login start -->
+    <string name="login">"Логин"</string>
+    <string name="enter_login">"Введите логин"</string>
+    <string name="password">"Пароль"</string>
+    <string name="enter_password">"Введите пароль"</string>
+    <!-- login end -->
+
 </resources>

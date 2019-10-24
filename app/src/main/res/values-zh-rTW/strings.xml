@@ -126,4 +126,14 @@
     <string name="file_upload_title">"Upload report"</string>
     <!-- file upload end -->
 
+    <string name="report_upload_success">"Report has been uploaded"</string>
+    <string name="report_upload_failure">"Error occurred. Try again later."</string>
+
+    <!-- login start -->
+    <string name="login">"Login"</string>
+    <string name="enter_login">"Enter login"</string>
+    <string name="password">"Password"</string>
+    <string name="enter_password">"Enter password"</string>
+    <!-- login end -->
+
 </resources>
