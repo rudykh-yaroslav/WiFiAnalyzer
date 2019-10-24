@@ -25,8 +25,11 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Handler;
 
+import androidx.annotation.NonNull;
+
 import com.vrem.util.BuildUtils;
 import com.vrem.wifianalyzer.ActivityUtils;
+import com.vrem.wifianalyzer.MainContext;
 import com.vrem.wifianalyzer.settings.Settings;
 import com.vrem.wifianalyzer.wifi.model.WiFiData;
 
@@ -35,8 +38,6 @@ import org.apache.commons.collections4.IterableUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 class Scanner implements ScannerService {
     private final List<UpdateNotifier> updateNotifiers;
@@ -62,6 +63,13 @@ class Scanner implements ScannerService {
         enableWiFi();
         scanResults();
         wiFiData = transformer.transformToWiFiData(cache.getScanResults(), cache.getWifiInfo());
+        MainContext.INSTANCE.getFusedLocationClient().getLastLocation()
+                .addOnSuccessListener(MainContext.INSTANCE.getMainActivity(), location -> {
+                    if (location != null) {
+                        wiFiData.setLat(location.getLatitude());
+                        wiFiData.setLon(location.getLongitude());
+                    }
+                });
         IterableUtils.forEach(updateNotifiers, new UpdateClosure());
     }
 

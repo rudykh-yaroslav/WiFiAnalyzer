@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.vrem.wifianalyzer.auth.AuthTokenProvider;
 import com.vrem.wifianalyzer.auth.LoginDialogProvider;
 import com.vrem.wifianalyzer.settings.Repository;
@@ -48,6 +49,7 @@ public enum MainContext {
     private FilterAdapter filterAdapter;
     private AuthTokenProvider authTokenProvider;
     private LoginDialogProvider loginDialogProvider;
+    private FusedLocationProviderClient fusedLocationClient;
 
     public Settings getSettings() {
         return settings;
@@ -123,6 +125,14 @@ public enum MainContext {
 
     public void setLoginDialogProvider(LoginDialogProvider loginDialogProvider) {
         this.loginDialogProvider = loginDialogProvider;
+    }
+
+    public FusedLocationProviderClient getFusedLocationClient() {
+        return fusedLocationClient;
+    }
+
+    public void setFusedLocationClient(FusedLocationProviderClient fusedLocationClient) {
+        this.fusedLocationClient = fusedLocationClient;
     }
 
     void initialize(@NonNull MainActivity mainActivity, boolean largeScreen) {

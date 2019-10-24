@@ -26,6 +26,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.util.Pair;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.material.navigation.NavigationView;
 import com.vrem.util.ConfigurationUtils;
 import com.vrem.util.EnumUtils;
@@ -43,13 +52,6 @@ import com.vrem.wifianalyzer.wifi.band.WiFiChannel;
 
 import java.util.Locale;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.util.Pair;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 public class MainActivity extends AppCompatActivity implements NavigationMenuControl, OnSharedPreferenceChangeListener {
 
     private MainReload mainReload;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationMenuCon
     private OptionMenu optionMenu;
     private String currentCountryCode;
     private PermissionService permissionService;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -103,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements NavigationMenuCon
 
         permissionService = new PermissionService(this);
         permissionService.check();
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mainContext.setFusedLocationClient(fusedLocationClient);
     }
 
     @Override

@@ -9,14 +9,14 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class NetworkService {
+public class WiFiAdminNetworkService {
     private static final String AUTH_TOKEN_HEADER = "X-Auth-token";
     private static final String BASE_URL = "http://172.30.12.123:8080"; //TODO: move to settings
-    private static NetworkService instance = new NetworkService();
+    private static WiFiAdminNetworkService instance = new WiFiAdminNetworkService();
     //    private static final String BASE_URL = "https://wifi-admin.herokuapp.com:8080"; //TODO: move to settings
     private Retrofit retrofit;
 
-    private NetworkService() {
+    private WiFiAdminNetworkService() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -45,7 +45,7 @@ public class NetworkService {
                 .build();
     }
 
-    public static NetworkService getInstance() {
+    public static WiFiAdminNetworkService getInstance() {
         return instance;
     }
 
