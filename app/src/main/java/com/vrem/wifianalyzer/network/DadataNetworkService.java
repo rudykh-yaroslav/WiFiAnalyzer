@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DadataNetworkService {
     private static final String AUTH_TOKEN_HEADER = "Authorization";
-    private static final String AUTH_TOKEN = "Token ab9ed7d11fea794781d23d488b8a32d20c281403";
+    private static final String AUTH_TOKEN = "Token a663eeb8fa179e65512863d85d830b1d72c875c5";
     private static final String BASE_URL = "https://suggestions.dadata.ru/suggestions/";
     private static DadataNetworkService instance = new DadataNetworkService();
     private Retrofit retrofit;
