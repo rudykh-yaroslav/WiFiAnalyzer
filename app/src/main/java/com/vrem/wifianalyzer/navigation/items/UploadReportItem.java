@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import com.vrem.wifianalyzer.MainActivity;
 import com.vrem.wifianalyzer.MainContext;
 import com.vrem.wifianalyzer.navigation.NavigationMenu;
-import com.vrem.wifianalyzer.report.Report;
+import com.vrem.wifianalyzer.report.ReportSender;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,8 +19,8 @@ class UploadReportItem implements NavigationItem {
         if (StringUtils.isBlank(authKey)) {
             MainContext.INSTANCE.getLoginDialogProvider().callLoginDialog();
         } else {
-            Report report = new Report(MainContext.INSTANCE.getScannerService().getWiFiData());
-            report.send();
+            ReportSender reportSender = new ReportSender();
+            reportSender.send();
         }
     }
 

@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.vrem.wifianalyzer.MainContext;
 import com.vrem.wifianalyzer.R;
 import com.vrem.wifianalyzer.network.WiFiAdminNetworkService;
-import com.vrem.wifianalyzer.report.Report;
+import com.vrem.wifianalyzer.report.ReportSender;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,8 +42,8 @@ public class LoginDialogProvider {
 
                                     if (response.isSuccessful()) {
                                         MainContext.INSTANCE.getAuthTokenProvider().setUserData(response.body());
-                                        Report report = new Report(MainContext.INSTANCE.getScannerService().getWiFiData());
-                                        report.send();
+                                        ReportSender reportSender = new ReportSender();
+                                        reportSender.send();
                                     } else {
                                         Toast toast = Toast.makeText(MainContext.INSTANCE.getContext(),
                                                 R.string.login_failure, Toast.LENGTH_LONG);

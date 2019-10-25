@@ -19,6 +19,7 @@
 package com.vrem.wifianalyzer.wifi.scanner;
 
 import android.annotation.TargetApi;
+import android.location.Location;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -26,6 +27,7 @@ import android.os.Build;
 import android.os.Handler;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.vrem.util.BuildUtils;
 import com.vrem.wifianalyzer.ActivityUtils;
@@ -45,6 +47,7 @@ class Scanner implements ScannerService {
     private final Settings settings;
     private Transformer transformer;
     private WiFiData wiFiData;
+    private Location location;
     private Cache cache;
     private PeriodicScan periodicScan;
 
@@ -64,12 +67,7 @@ class Scanner implements ScannerService {
         scanResults();
         wiFiData = transformer.transformToWiFiData(cache.getScanResults(), cache.getWifiInfo());
         MainContext.INSTANCE.getFusedLocationClient().getLastLocation()
-                .addOnSuccessListener(MainContext.INSTANCE.getMainActivity(), location -> {
-                    if (location != null) {
-                        wiFiData.setLat(location.getLatitude());
-                        wiFiData.setLon(location.getLongitude());
-                    }
-                });
+                .addOnSuccessListener(MainContext.INSTANCE.getMainActivity(), loc -> location = loc);
         IterableUtils.forEach(updateNotifiers, new UpdateClosure());
     }
 
@@ -77,6 +75,12 @@ class Scanner implements ScannerService {
     @NonNull
     public WiFiData getWiFiData() {
         return wiFiData;
+    }
+
+    @Nullable
+    @Override
+    public Location getLocation() {
+        return location;
     }
 
     @Override

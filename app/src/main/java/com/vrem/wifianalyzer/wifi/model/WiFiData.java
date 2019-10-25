@@ -19,7 +19,6 @@
 package com.vrem.wifianalyzer.wifi.model;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.vrem.wifianalyzer.MainContext;
 import com.vrem.wifianalyzer.vendor.model.VendorService;
@@ -40,10 +39,6 @@ public class WiFiData {
 
     private final List<WiFiDetail> wiFiDetails;
     private final WiFiConnection wiFiConnection;
-    private double lat;
-    private double lon;
-    private String address;
-    private String login;
 
     public WiFiData(@NonNull List<WiFiDetail> wiFiDetails, @NonNull WiFiConnection wiFiConnection) {
         this.wiFiDetails = wiFiDetails;
@@ -109,40 +104,6 @@ public class WiFiData {
     @NonNull
     public WiFiConnection getWiFiConnection() {
         return wiFiConnection;
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
-    public double getLon() {
-        return lon;
-    }
-
-    public void setLon(double lon) {
-        this.lon = lon;
-    }
-
-    @Nullable
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(@Nullable String address) {
-        this.address = address;
-    }
-
-    @Nullable
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(@NonNull String login) {
-        this.login = login;
     }
 
     @NonNull

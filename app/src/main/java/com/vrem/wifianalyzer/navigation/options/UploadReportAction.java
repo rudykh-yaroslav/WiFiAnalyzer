@@ -1,7 +1,7 @@
 package com.vrem.wifianalyzer.navigation.options;
 
 import com.vrem.wifianalyzer.MainContext;
-import com.vrem.wifianalyzer.report.Report;
+import com.vrem.wifianalyzer.report.ReportSender;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,8 +12,8 @@ class UploadReportAction implements Action {
         if (StringUtils.isBlank(authKey)) {
             MainContext.INSTANCE.getLoginDialogProvider().callLoginDialog();
         } else {
-            Report report = new Report(MainContext.INSTANCE.getScannerService().getWiFiData());
-            report.send();
+            ReportSender reportSender = new ReportSender();
+            reportSender.send();
         }
     }
 }

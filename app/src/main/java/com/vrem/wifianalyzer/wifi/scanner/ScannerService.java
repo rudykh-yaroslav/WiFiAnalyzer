@@ -18,15 +18,21 @@
 
 package com.vrem.wifianalyzer.wifi.scanner;
 
-import com.vrem.wifianalyzer.wifi.model.WiFiData;
+import android.location.Location;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.vrem.wifianalyzer.wifi.model.WiFiData;
 
 public interface ScannerService {
     void update();
 
     @NonNull
     WiFiData getWiFiData();
+
+    @Nullable
+    Location getLocation();
 
     void register(@NonNull UpdateNotifier updateNotifier);
 

@@ -1,5 +1,7 @@
 package com.vrem.wifianalyzer.report;
 
+import android.location.Location;
+import android.os.Build;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -10,6 +12,8 @@ import com.vrem.wifianalyzer.network.WiFiAdminNetworkService;
 import com.vrem.wifianalyzer.network.model.DadataRq;
 import com.vrem.wifianalyzer.network.model.DadataRs;
 import com.vrem.wifianalyzer.network.model.Suggestion;
+import com.vrem.wifianalyzer.wifi.model.DeviceDetails;
+import com.vrem.wifianalyzer.wifi.model.Report;
 import com.vrem.wifianalyzer.wifi.model.WiFiData;
 
 import java.util.List;
@@ -18,24 +22,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Report {
-    private final WiFiData wiFiData;
+public class ReportSender {
 
-    public Report(WiFiData wiFiData) {
-        this.wiFiData = wiFiData;
+    public ReportSender() {
     }
 
     public void send() {
         ProgressBar progressBar = MainContext.INSTANCE.getMainActivity().findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
-        wiFiData.setLogin(MainContext.INSTANCE.getAuthTokenProvider().getLogin());
+        WiFiData wiFiData = MainContext.INSTANCE.getScannerService().getWiFiData();
+        Location location = MainContext.INSTANCE.getScannerService().getLocation();
+        double lat = location != null ? location.getLatitude() : 0;
+        double lon = location != null ? location.getLongitude() : 0;
+        String login = MainContext.INSTANCE.getAuthTokenProvider().getLogin();
+        DeviceDetails deviceDetails = new DeviceDetails(Build.MANUFACTURER, Build.MODEL, Build.VERSION.RELEASE);
+        Report report = new Report(wiFiData, login, deviceDetails, lat, lon);
 
-        if (wiFiData.getLat() != 0 && wiFiData.getLon() != 0) {
+        if (lat != 0 && lon != 0) {
             DadataNetworkService
                     .getInstance()
                     .dadataApi()
-                    .reverseGeocode(new DadataRq(wiFiData.getLat(), wiFiData.getLon()))
+                    .reverseGeocode(new DadataRq(lat, lon))
                     .enqueue(
                             new Callback<DadataRs>() {
 
@@ -44,27 +52,27 @@ public class Report {
                                     if (response.isSuccessful()) {
                                         List<Suggestion> suggestions = response.body().getSuggestions();
                                         if (suggestions != null && suggestions.size() > 0) {
-                                            wiFiData.setAddress(suggestions.get(0).getValue());
+                                            report.setAddress(suggestions.get(0).getValue());
                                         }
                                     }
-                                    doSend();
+                                    doSend(report);
                                 }
 
                                 @Override
                                 public void onFailure(Call<DadataRs> call, Throwable t) {
-                                    doSend();
+                                    doSend(report);
                                 }
                             }
                     );
         }
     }
 
-    private void doSend() {
+    private void doSend(Report report) {
 
         WiFiAdminNetworkService
                 .getInstance()
                 .wiFiAdminApi()
-                .sendReport(wiFiData)
+                .sendReport(report)
                 .enqueue(
                         new Callback<Void>() {
 
