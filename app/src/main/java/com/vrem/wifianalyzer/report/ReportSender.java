@@ -14,6 +14,7 @@ import com.vrem.wifianalyzer.network.model.DadataRs;
 import com.vrem.wifianalyzer.network.model.Suggestion;
 import com.vrem.wifianalyzer.wifi.model.DeviceDetails;
 import com.vrem.wifianalyzer.wifi.model.Report;
+import com.vrem.wifianalyzer.network.speedtest.Speedtest;
 import com.vrem.wifianalyzer.wifi.model.WiFiData;
 
 import java.util.List;
@@ -68,7 +69,6 @@ public class ReportSender {
     }
 
     private void doSend(Report report) {
-
         WiFiAdminNetworkService
                 .getInstance()
                 .wiFiAdminApi()
@@ -76,11 +76,15 @@ public class ReportSender {
                 .enqueue(
                         new Callback<Void>() {
 
+
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 ProgressBar progressBar = MainContext.INSTANCE.getMainActivity().findViewById(R.id.progressBar);
                                 progressBar.setVisibility(ProgressBar.INVISIBLE);
 
+//                                Speedtest sp = new Speedtest();
+//                                sp.upload();
+//                                sp.download();
                                 if (response.isSuccessful()) {
                                     Toast toast = Toast.makeText(MainContext.INSTANCE.getContext(),
                                             R.string.report_upload_success, Toast.LENGTH_LONG);

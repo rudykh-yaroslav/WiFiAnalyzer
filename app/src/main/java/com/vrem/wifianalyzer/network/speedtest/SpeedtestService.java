@@ -1,9 +1,11 @@
-package com.vrem.wifianalyzer.network;
+package com.vrem.wifianalyzer.network.speedtest;
 
 import android.os.Handler;
 import android.os.Looper;
 
 import com.vrem.wifianalyzer.MainContext;
+
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -12,22 +14,24 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class WiFiAdminNetworkService {
+public class SpeedtestService {
     private static final String AUTH_TOKEN_HEADER = "AUTHORIZATION";
     private static final String AUTH_TOKEN_PREFIX = "Bearer ";
 //    private static final String BASE_URL = "http://172.30.12.123:8080"; //TODO: move to settings
-    private static WiFiAdminNetworkService instance = new WiFiAdminNetworkService();
+    private static final SpeedtestService instance = new SpeedtestService();
         private static final String BASE_URL = "https://wifi-admin.herokuapp.com/"; //TODO: move to settings
     private Retrofit retrofit;
     private Handler loginDialogHandler;
 
-    private WiFiAdminNetworkService() {
+    private SpeedtestService() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         loginDialogHandler = new Handler(Looper.getMainLooper());
 
         OkHttpClient.Builder client = new OkHttpClient.Builder()
+                .readTimeout(600, TimeUnit.SECONDS)
+                .writeTimeout(600, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
                 .addInterceptor(chain -> {
                     Request original = chain.request();
@@ -53,11 +57,11 @@ public class WiFiAdminNetworkService {
                 .build();
     }
 
-    public static WiFiAdminNetworkService getInstance() {
+    public static SpeedtestService getInstance() {
         return instance;
     }
 
-    public WiFiAdminApi wiFiAdminApi() {
-        return retrofit.create(WiFiAdminApi.class);
+    public SpeedtestApi speedtestApi() {
+        return retrofit.create(SpeedtestApi.class);
     }
 }

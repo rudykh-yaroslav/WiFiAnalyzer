@@ -10,6 +10,7 @@ import com.vrem.wifianalyzer.MainContext;
 import com.vrem.wifianalyzer.R;
 import com.vrem.wifianalyzer.network.WiFiAdminNetworkService;
 import com.vrem.wifianalyzer.report.ReportSender;
+import com.vrem.wifianalyzer.network.speedtest.Speedtest;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,7 +58,6 @@ public class LoginDialogProvider {
                                 public void onFailure(Call<UserData> call, Throwable t) {
                                     ProgressBar progressBar = MainContext.INSTANCE.getMainActivity().findViewById(R.id.progressBar);
                                     progressBar.setVisibility(ProgressBar.INVISIBLE);
-
                                     Toast toast = Toast.makeText(MainContext.INSTANCE.getContext(),
                                             R.string.login_failure, Toast.LENGTH_LONG);
                                     toast.show();
