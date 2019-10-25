@@ -40,6 +40,7 @@ public enum NavigationMenu {
     CHANNEL_GRAPH(R.drawable.ic_insert_chart, R.string.action_channel_graph, NavigationItemFactory.CHANNEL_GRAPH, NavigationOptionFactory.OTHER),
     TIME_GRAPH(R.drawable.ic_show_chart, R.string.action_time_graph, NavigationItemFactory.TIME_GRAPH, NavigationOptionFactory.OTHER),
     UPLOAD_REPORT(R.drawable.ic_file_upload, R.string.action_upload_report, NavigationItemFactory.UPLOAD_REPORT),
+    SPEED_TEST(R.drawable.ic_import_export, R.string.action_speed_test, NavigationItemFactory.SPEED_TEST),
     EXPORT(R.drawable.ic_import_export, R.string.action_export, NavigationItemFactory.EXPORT),
     CHANNEL_AVAILABLE(R.drawable.ic_location_on, R.string.action_channel_available, NavigationItemFactory.CHANNEL_AVAILABLE),
     VENDORS(R.drawable.ic_list_grey, R.string.action_vendors, NavigationItemFactory.VENDORS),

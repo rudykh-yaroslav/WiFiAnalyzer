@@ -1,6 +1,7 @@
 package com.vrem.wifianalyzer.network.speedtest;
 
-import com.vrem.wifianalyzer.network.model.SpeedtestDatastructure;
+import com.vrem.wifianalyzer.network.model.SpeedtestDatastructureDownload;
+import com.vrem.wifianalyzer.network.model.SpeedtestDatastructureUpload;
 
 import java.sql.Timestamp;
 
@@ -11,8 +12,8 @@ import retrofit2.http.Query;
 
 public interface SpeedtestApi {
     @POST("/speedtest/upload")
-    Call<Timestamp> upload(@Body SpeedtestDatastructure speedtestDatastructure);
+    Call<Long> upload(@Body SpeedtestDatastructureUpload speedtestDatastructure);
 
     @POST("/speedtest/download")
-    Call<SpeedtestDatastructure> download(@Query("timestamp") Timestamp timestamp);
+    Call<SpeedtestDatastructureDownload> download(@Query("timestamp") Long timestamp);
 }

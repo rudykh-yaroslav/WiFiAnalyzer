@@ -34,6 +34,7 @@
     <string name="action_channel_graph">"Графика на канала"</string>
     <string name="action_time_graph">"Времева линия"</string>
     <string name="action_upload_report">"Upload Report"</string>
+    <string name="action_speed_test">"Speed test"</string>
     <string name="action_export">"Експортиране"</string>
     <string name="action_channel_available">"Налични канали"</string>
     <string name="action_vendors">"Доставчици"</string>

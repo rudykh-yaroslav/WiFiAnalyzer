@@ -30,8 +30,8 @@ public class SpeedtestService {
         loginDialogHandler = new Handler(Looper.getMainLooper());
 
         OkHttpClient.Builder client = new OkHttpClient.Builder()
-                .readTimeout(600, TimeUnit.SECONDS)
-                .writeTimeout(600, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
                 .addInterceptor(chain -> {
                     Request original = chain.request();

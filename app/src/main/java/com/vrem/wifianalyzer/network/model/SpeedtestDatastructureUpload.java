@@ -1,13 +1,10 @@
 package com.vrem.wifianalyzer.network.model;
 
-import java.sql.Time;
-import java.sql.Timestamp;
-
-public class SpeedtestDatastructure {
+public class SpeedtestDatastructureUpload {
     private Byte[] file;
-    private Timestamp timestamp;
+    private Long timestamp;
 
-    public SpeedtestDatastructure(Byte[] file, Timestamp timestamp) {
+    public SpeedtestDatastructureUpload(Byte[] file, Long timestamp) {
         this.file = file;
         this.timestamp = timestamp;
     }
@@ -16,7 +13,7 @@ public class SpeedtestDatastructure {
         return this.file.length;
     }
 
-    public Timestamp getTimestamp() {
+    public Long getTimestamp() {
         return this.timestamp;
     }
 }

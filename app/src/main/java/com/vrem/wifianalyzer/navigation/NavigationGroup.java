@@ -27,7 +27,7 @@ import java.util.List;
 
 public enum NavigationGroup {
     GROUP_FEATURE(NavigationMenu.ACCESS_POINTS, NavigationMenu.CHANNEL_RATING, NavigationMenu.CHANNEL_GRAPH, NavigationMenu.TIME_GRAPH),
-    GROUP_OTHER(NavigationMenu.UPLOAD_REPORT, NavigationMenu.EXPORT, NavigationMenu.CHANNEL_AVAILABLE, NavigationMenu.VENDORS, NavigationMenu.PORT_AUTHORITY),
+    GROUP_OTHER(NavigationMenu.UPLOAD_REPORT, NavigationMenu.SPEED_TEST, NavigationMenu.EXPORT, NavigationMenu.CHANNEL_AVAILABLE, NavigationMenu.VENDORS, NavigationMenu.PORT_AUTHORITY),
     GROUP_SETTINGS(NavigationMenu.SETTINGS, NavigationMenu.ABOUT);
 
     private final List<NavigationMenu> navigationMenus;

@@ -32,6 +32,7 @@
     <string name="action_channel_graph">"Graphique par canal"</string>
     <string name="action_time_graph">"Historique"</string>
     <string name="action_upload_report">"Upload Report"</string>
+    <string name="action_speed_test">"Speed test"</string>
     <string name="action_export">"Exporter"</string>
     <string name="action_channel_available">"Canaux disponibles"</string>
     <string name="action_vendors">"Fabricants"</string>

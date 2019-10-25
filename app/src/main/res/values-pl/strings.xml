@@ -32,6 +32,7 @@
     <string name="action_channel_graph">"Wykres Kanału"</string>
     <string name="action_time_graph">"Wykres Czasowy"</string>
     <string name="action_upload_report">"Upload Report"</string>
+    <string name="action_speed_test">"Speed test"</string>
     <string name="action_export">"Exportuj"</string>
     <string name="action_channel_available">"Dotępne Kanały"</string>
     <string name="action_vendors">"Dostawcy"</string>

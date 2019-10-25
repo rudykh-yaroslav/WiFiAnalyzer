@@ -32,6 +32,7 @@
     <string name="action_channel_graph">"頻道圖"</string>
     <string name="action_time_graph">"時間圖"</string>
     <string name="action_upload_report">"Upload Report"</string>
+    <string name="action_speed_test">"Speed test"</string>
     <string name="action_export">"分享"</string>
     <string name="action_channel_available">"可用頻道"</string>
     <string name="action_vendors">"製造商"</string>
