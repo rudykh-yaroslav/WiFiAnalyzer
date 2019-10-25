@@ -37,7 +37,7 @@ public class WiFiAdminNetworkService {
                             .build();
 
                     Response response = chain.proceed(request);
-                    if (response.code() == 401) {
+                    if (response.code() == 401 || response.code() == 403) {
                         MainContext.INSTANCE.getAuthTokenProvider().resetUserData();
                         loginDialogHandler.post(() ->
                                 MainContext.INSTANCE.getLoginDialogProvider().callLoginDialog());
